@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: frontend
+          env:
+            - name: PODINFO_UI_COLOR
+              value: "#34577c"   # Blue for dev
+            - name: PODINFO_UI_MESSAGE
+              value: "Frontend [DEV] - v6.5.0"
+            - name: PODINFO_BACKEND_URL
+              value: "http://dev-backend:9898"

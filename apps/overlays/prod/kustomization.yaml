@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: prod
+namePrefix: prod-
+
+resources:
+  - ../../base/frontend
+  - ../../base/backend
+
+# Prod runs a newer pinned version
+images:
+  - name: docker.io/stefanprodan/podinfo
+    newTag: "6.7.0"
+
+patches:
+  - path: frontend/patch.yaml
+    target:
+      kind: Deployment
+      name: frontend
+  - path: backend/patch.yaml
+    target:
+      kind: Deployment
+      name: backend
+
+commonLabels:
+  environment: prod
+  managed-by: argocd

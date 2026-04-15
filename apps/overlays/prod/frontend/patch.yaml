@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 3              # More replicas in prod
+  template:
+    spec:
+      containers:
+        - name: frontend
+          env:
+            - name: PODINFO_UI_COLOR
+              value: "#e91e63"   # Pink for prod - visually distinct!
+            - name: PODINFO_UI_MESSAGE
+              value: "Frontend [PROD] - v6.7.0"
+            - name: PODINFO_BACKEND_URL
+              value: "http://prod-backend:9898"

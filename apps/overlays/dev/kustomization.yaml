@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dev
+namePrefix: dev-
+
+resources:
+  - ../../base/frontend
+  - ../../base/backend
+
+# Override image tags for dev environment
+images:
+  - name: docker.io/stefanprodan/podinfo
+    newTag: "6.5.0"
+
+# Strategic merge patches for each component
+patches:
+  - path: frontend/patch.yaml
+    target:
+      kind: Deployment
+      name: frontend
+  - path: backend/patch.yaml
+    target:
+      kind: Deployment
+      name: backend
+
+commonLabels:
+  environment: dev
+  managed-by: argocd

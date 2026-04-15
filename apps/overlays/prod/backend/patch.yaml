@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2              # HA in prod
+  template:
+    spec:
+      containers:
+        - name: backend
+          env:
+            - name: PODINFO_UI_COLOR
+              value: "#f57c00"   # Orange for prod backend
+            - name: PODINFO_UI_MESSAGE
+              value: "Backend [PROD] - v6.7.0"

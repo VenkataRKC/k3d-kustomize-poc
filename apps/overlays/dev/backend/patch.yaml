@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: backend
+          env:
+            - name: PODINFO_UI_COLOR
+              value: "#2e7d32"   # Green for dev backend
+            - name: PODINFO_UI_MESSAGE
+              value: "Backend [DEV] - v6.5.0"
