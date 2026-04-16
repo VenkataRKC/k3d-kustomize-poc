@@ -10,7 +10,7 @@ spec:
 
   source:
     # TODO: Replace with your GitHub repo URL
-    repoURL: https://github.com/YOUR_GITHUB_USERNAME/k3d-kustomize-poc
+    repoURL: https://github.com/VenkataRKC/k3d-kustomize-poc
     targetRevision: main
     path: apps/overlays/prod
 
